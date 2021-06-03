@@ -3,12 +3,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="Dependencies/jQuery.js"></script>
     <script src="Dependencies/popper.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async
-            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- ecuaciones-->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Hoja de estilo y bootstrap-->
     <link rel="stylesheet" href="Dependencies/bootstrap-5.0.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <title>Karatsuba</title>
 </head>
 <body>
@@ -17,27 +20,57 @@
         <div id="primera-seccion">
             <h1>Algoritmo de Karatsuba</h1>
             <h2>Multiplicación rápida</h2>
-            <p>En este apartado te explicaremos que es el algoritmo de Karatsuba, el cual es un algoritmo que nos permite realizar multiplicación rápida, a continuación te contaremos sobre
+            <p>En esta sección te explicaremos que es el algoritmo de Karatsuba, el cual es un algoritmo que nos permite realizar multiplicación rápida, a continuación te contaremos sobre
                 su historia, como funciona, su complejidad en términos de eficiencia, como se compara con la multiplicación normal y su importancia en el mundo de los algoritmos
             </p>
+            <hr>
             <h3>Un poco de historia</h3>
             <p>
                 Hasta 1960, el procedimiento estándar para multiplicar dos números de n-dígitos era el que nos enseñaron en la primaria y usamos durante toda nuestra vida académica, 
                 este algoritmo requiere un número de operaciones elementales proporcional a  \(n^2\) (por ahora confía en que esto es verdad). Andrey Kolmogorov tenía la conjetura de que este
-                algoritmo era óptimo asintoticamente, lo que significa que cualquier algoritmo para esta tarea iba a requerir n^2 operaciones elementales. En 1960, Kolmogorov organizó un seminario
+                algoritmo era óptimo asintoticamente, lo que significa que cualquier algoritmo para esta tarea iba a requerir mínimo \(n^2\) operaciones elementales. En 1960, Kolmogorov organizó un seminario
                 de problemas matemáticos en la Universidad Estatal de Moscú, donde dio a conocer su conjetura. Una semana después, Karatsuba, un estudiante de 23 años, encontró un algoritmo que 
                 multiplicaba números en \(\mathcal{O}(n^{log_{2}(3)})\) pasos elementales, lo que probaba que la conjetura de Andrey Kolmogorov era incorrecta.
 
-                Sorprendido, Kolmogorov impartió múltiples conferencias sobre el hallazgo de Karatsuma, tiempo despues escribió un artículo mostrando el resultado de Karatsuba y lo listó como Autor.
+                Sorprendido, Kolmogorov impartió múltiples conferencias sobre el hallazgo de Karatsuba, tiempo despues escribió un artículo mostrando el halalzgo de Karatsuba y lo listó como autor del mismo.
             </p>
+            <hr>
             <h3>Algoritmo de multiplicación por fuerza bruta</h3>
             <p>
                 Para poder entender por que el algoritmo de Karatsuba es mas eficiente, tenemos que analizar el algoritmo que ya conocemos y amamos... El algoritmo de multiplicación por fuerza bruta.
-                Este algoritmo es el que nos enseñaron en la primaria, analicemos el siguiente ejemplo:
+                Este algoritmo es el que la mayoría utilizamos para resolver multiplicaciones en papel. Analicemos el siguiente ejemplo:
             </p>
-            <img src="images/1.png" alt="multiplicacion-fuerza-bruta">
+            <img class="mult-fuerza-bruta" src="images/1.png" alt="multiplicacion-fuerza-bruta">
             <p>
-                Si decimos que \(n\) es la cantidad de dígitos a multiplicar, podemos decir que para este ejemplo \(n = 4\).
+                Si decimos que \(n\) es la cantidad de dígitos a multiplicar, podemos decir que para este ejemplo \(n = 2\).
+            </p>
+            <img class="mult-fuerza-bruta" src="images/2.png" alt="multiplicacion-fuerza-bruta">
+            <img class="mult-fuerza-bruta" src="images/3.png" alt="multiplicacion-fuerza-bruta">
+            <p>
+                Tenemos que multiplicar cada dígito de la parte inferior por cada dígito de la parte superior y guardamos el resultado. 
+            </p>
+            <img class="mult-fuerza-bruta" src="images/4.png" alt="multiplicacion-fuerza-bruta">
+            <img class="mult-fuerza-bruta" src="images/5.png" alt="multiplicacion-fuerza-bruta">
+            <p>
+                Una vez efectuada la multiplicación en cada dígito inferior, procedemos a sumar cada resultado obtenido.
+            </p>
+            <img class="mult-fuerza-bruta" src="images/6.png" alt="multiplicacion-fuerza-bruta">
+            <p>
+                Al sumar los resultados de cada multiplicación llegamos a la respuesta. ¿Cuántas multiplicaciones se realizaron en total? Se puede apreciar que en total tuvimos que hacer 4 multiplicaciones (y tambien algunas sumas, pero por ahora tomaremos en cuenta solo las multiplicaciones),
+                tomando en cuenta que establecimos que \(n = 2\) podemos decir que se realizaron \(n^2\) multiplicaciones.
+            </p>
+            <p>
+                Desde el comienzo de las matemáticas, esta era la forma más rápida de realizar multiplicaciones, hasta que llegó Karatsuba y propuso hacer una optimización que consiste en transformar una multiplicación en algunas sumas.
+                Para poder entender esta optimización necesitamos ver la multiplicación de manera diferente, a continuación te mostraremos un ejemplo, con una multiplicacion de 4 dígitos.
+            </p>
+            <hr>
+            <h3>Multiplicación mediante paradigma de Divide y Vencerás</h3>
+            <p>El algoritmo de multiplicación que conocemos se puede implementar de una manera recursiva utilizando el paradigma de Divide y Vencerás, para ilustrar este proceso, se tiene el siguiente ejemplo.</p>
+            <img src="images/7.png" alt="multipicación divide y Vencerás">
+            <p>Podemos ver que para este caso, \(n = 4\), ya que el número de dígitos a multiplicar es de 4, para aplicar el paradigma de Divide y Vencerás, primero tenemos que pensar en como descomponer este problema
+                en pasos mas pequeños, para lograr esto, primero tenemos que comprender lo siguiente: <br>
+               <span class="x-y">\(x = (10^{n/2}*c)+d\) </span> <br>
+                <span class="x-y">\(y = (10^{n/2}*a)+b\)</span> <br>
             </p>
         </div>
     </div>

@@ -3,9 +3,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="Dependencies/jQuery.js"></script>
+    <script src="Dependencies/popper.js"></script>
+    <link rel="stylesheet" href="Dependencies/bootstrap-5.0.1-dist/css/bootstrap.min.css">
     <title>Karatsuba</title>
 </head>
 <body>
-    
+<div class="container">
+    <div class="container mx-auto">
+        <div id="primera-seccion">
+            <h1>Algoritmo de Karatsuba</h1>
+            <h2>Multiplicación rápida</h2>
+            <p>En este apartado te explicaremos que es el algoritmo de Karatsuba, el cual es un algoritmo que nos permite realizar multiplicación rápida, a continuación te contaremos sobre
+                su historia, como funciona, su complejidad en términos de eficiencia, como se compara con la multiplicación normal y su importancia en el mundo de los algoritmos
+            </p>
+            <h3>Un poco de historia</h3>
+            <p>
+                Hasta 1960, el procedimiento estándar para multiplicar dos números de n-dígitos era el que nos enseñaron en la primaria y usamos durante toda nuestra vida académica, 
+                este algoritmo requiere un número de operaciones elementales proporcional a n^2 (por ahora confía en que esto es cierto). Andrey Kolmogorov tenía la conjetura de que este
+                algoritmo era óptimo asintoticamente, lo que significa que cualquier algoritmo para esta tarea iba a requerir n^2 operaciones elementales. En 1960, Kolmogorov organizó un seminario
+                de problemas matemáticos en la Universidad Estatal de Moscú, donde dio a conocer su conjetura. Una semana después, Karatsuba, un estudiante de 23 años, encontró un algoritmo que 
+                multiplicaba números en O(n^log2(3)) pasos elementales, lo que probaba que la conjetura de Andrey Kolmogorov era incorrecta.
+
+                Tiempo despues Kolmogorov escribió un artículo mostrando el resultado de Karatsuba y lo listó como Autor.
+            </p>
+            <h3>Algoritmo de multiplicación por fuerza bruta</h3>
+            <p>
+                Para poder entender por que el algoritmo de Karatsuba es mas eficiente, tenemos que analizar el algoritmo que ya conocemos y amamos... El algoritmo de multiplicación por fuerza bruta.
+                Este algoritmo es el que nos enseñaron en la primaria, analicemos el siguiente ejemplo:
+            </p>
+            <img src="images/1.png" alt="multiplicacion-fuerza-bruta">
+
+        </div>
+    </div>
+        
+</div>
+
+    <script src="Dependencies/bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>
 </body>
 </html>

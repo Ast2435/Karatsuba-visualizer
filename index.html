@@ -19,59 +19,99 @@
     <div class="container mx-auto">
         <div id="primera-seccion">
             <h1>Algoritmo de Karatsuba</h1>
-            <h2>Multiplicación rápida</h2>
-            <p>En esta sección te explicaremos que es el algoritmo de Karatsuba, el cual es un algoritmo que nos permite realizar multiplicación rápida, a continuación te contaremos sobre
+                <h2>Multiplicación rápida</h2>
+                    <p>En esta sección te explicaremos que es el algoritmo de Karatsuba, el cual es un algoritmo que nos permite realizar multiplicación rápida, a continuación te contaremos sobre
                 su historia, como funciona, su complejidad en términos de eficiencia, como se compara con la multiplicación normal y su importancia en el mundo de los algoritmos
-            </p>
-            <hr>
-            <h3>Un poco de historia</h3>
-            <p>
-                Hasta 1960, el procedimiento estándar para multiplicar dos números de n-dígitos era el que nos enseñaron en la primaria y usamos durante toda nuestra vida académica, 
-                este algoritmo requiere un número de operaciones elementales proporcional a  \(n^2\) (por ahora confía en que esto es verdad). Andrey Kolmogorov tenía la conjetura de que este
-                algoritmo era óptimo asintoticamente, lo que significa que cualquier algoritmo para esta tarea iba a requerir mínimo \(n^2\) operaciones elementales. En 1960, Kolmogorov organizó un seminario
-                de problemas matemáticos en la Universidad Estatal de Moscú, donde dio a conocer su conjetura. Una semana después, Karatsuba, un estudiante de 23 años, encontró un algoritmo que 
-                multiplicaba números en \(\mathcal{O}(n^{log_{2}(3)})\) pasos elementales, lo que probaba que la conjetura de Andrey Kolmogorov era incorrecta.
+                    </p>
+                <hr>
+                <h3>Un poco de historia</h3>
+                    <p>
+                        Hasta 1960, el procedimiento estándar para multiplicar dos números de n-dígitos era el que nos enseñaron en la primaria y usamos durante toda nuestra vida académica, 
+                        este algoritmo requiere un número de operaciones elementales proporcional a  \(n^2\) (por ahora confía en que esto es verdad). Andrey Kolmogorov tenía la conjetura de que este
+                        algoritmo era óptimo asintoticamente, lo que significa que cualquier algoritmo para esta tarea iba a requerir mínimo \(n^2\) operaciones elementales. En 1960, Kolmogorov organizó un seminario
+                        de problemas matemáticos en la Universidad Estatal de Moscú, donde dio a conocer su conjetura. Una semana después, Karatsuba, un estudiante de 23 años, encontró un algoritmo que 
+                        multiplicaba números en \(\mathcal{O}(n^{log_{2}(3)})\) pasos elementales, lo que probaba que la conjetura de Andrey Kolmogorov era incorrecta.
 
-                Sorprendido, Kolmogorov impartió múltiples conferencias sobre el hallazgo de Karatsuba, tiempo despues escribió un artículo mostrando el halalzgo de Karatsuba y lo listó como autor del mismo.
-            </p>
-            <hr>
-            <h3>Algoritmo de multiplicación por fuerza bruta</h3>
-            <p>
-                Para poder entender por que el algoritmo de Karatsuba es mas eficiente, tenemos que analizar el algoritmo que ya conocemos y amamos... El algoritmo de multiplicación por fuerza bruta.
-                Este algoritmo es el que la mayoría utilizamos para resolver multiplicaciones en papel. Analicemos el siguiente ejemplo:
-            </p>
-            <img class="mult-fuerza-bruta" src="images/1.png" alt="multiplicacion-fuerza-bruta">
-            <p>
-                Si decimos que \(n\) es la cantidad de dígitos a multiplicar, podemos decir que para este ejemplo \(n = 2\).
-            </p>
-            <img class="mult-fuerza-bruta" src="images/2.png" alt="multiplicacion-fuerza-bruta">
-            <img class="mult-fuerza-bruta" src="images/3.png" alt="multiplicacion-fuerza-bruta">
-            <p>
-                Tenemos que multiplicar cada dígito de la parte inferior por cada dígito de la parte superior y guardamos el resultado. 
-            </p>
-            <img class="mult-fuerza-bruta" src="images/4.png" alt="multiplicacion-fuerza-bruta">
-            <img class="mult-fuerza-bruta" src="images/5.png" alt="multiplicacion-fuerza-bruta">
-            <p>
-                Una vez efectuada la multiplicación en cada dígito inferior, procedemos a sumar cada resultado obtenido.
-            </p>
-            <img class="mult-fuerza-bruta" src="images/6.png" alt="multiplicacion-fuerza-bruta">
-            <p>
-                Al sumar los resultados de cada multiplicación llegamos a la respuesta. ¿Cuántas multiplicaciones se realizaron en total? Se puede apreciar que en total tuvimos que hacer 4 multiplicaciones (y tambien algunas sumas, pero por ahora tomaremos en cuenta solo las multiplicaciones),
-                tomando en cuenta que establecimos que \(n = 2\) podemos decir que se realizaron \(n^2\) multiplicaciones.
-            </p>
-            <p>
-                Desde el comienzo de las matemáticas, esta era la forma más rápida de realizar multiplicaciones, hasta que llegó Karatsuba y propuso hacer una optimización que consiste en transformar una multiplicación en algunas sumas.
-                Para poder entender esta optimización necesitamos ver la multiplicación de manera diferente, a continuación te mostraremos un ejemplo, con una multiplicacion de 4 dígitos.
-            </p>
-            <hr>
-            <h3>Multiplicación mediante paradigma de Divide y Vencerás</h3>
-            <p>El algoritmo de multiplicación que conocemos se puede implementar de una manera recursiva utilizando el paradigma de Divide y Vencerás, para ilustrar este proceso, se tiene el siguiente ejemplo.</p>
-            <img src="images/7.png" alt="multipicación divide y Vencerás">
-            <p>Podemos ver que para este caso, \(n = 4\), ya que el número de dígitos a multiplicar es de 4, para aplicar el paradigma de Divide y Vencerás, primero tenemos que pensar en como descomponer este problema
-                en pasos mas pequeños, para lograr esto, primero tenemos que comprender lo siguiente: <br>
-               <span class="x-y">\(x = (10^{n/2}*c)+d\) </span> <br>
-                <span class="x-y">\(y = (10^{n/2}*a)+b\)</span> <br>
-            </p>
+                        Sorprendido, Kolmogorov impartió múltiples conferencias sobre el hallazgo de Karatsuba, tiempo despues escribió un artículo mostrando el halalzgo de Karatsuba y lo listó como autor del mismo.
+                    </p>
+                <hr>
+                <h3>Algoritmo de multiplicación por fuerza bruta</h3>
+                    <p>
+                        Para poder entender por que el algoritmo de Karatsuba es mas eficiente, tenemos que analizar el algoritmo que ya conocemos y amamos... El algoritmo de multiplicación por fuerza bruta.
+                        Este algoritmo es el que la mayoría utilizamos para resolver multiplicaciones en papel. Analicemos el siguiente ejemplo:
+                    </p>
+                    <img class="mult-fuerza-bruta" src="images/1.png" alt="multiplicacion-fuerza-bruta">
+                    <p>
+                        Si decimos que \(n\) es la cantidad de dígitos a multiplicar, podemos decir que para este ejemplo \(n = 2\).
+                    </p>
+                    <img class="mult-fuerza-bruta" src="images/2.png" alt="multiplicacion-fuerza-bruta">
+                    <img class="mult-fuerza-bruta" src="images/3.png" alt="multiplicacion-fuerza-bruta">
+                    <p>
+                        Tenemos que multiplicar cada dígito de la parte inferior por cada dígito de la parte superior y guardamos el resultado. 
+                    </p>
+                    <img class="mult-fuerza-bruta" src="images/4.png" alt="multiplicacion-fuerza-bruta">
+                    <img class="mult-fuerza-bruta" src="images/5.png" alt="multiplicacion-fuerza-bruta">
+                    <p>
+                        Una vez efectuada la multiplicación en cada dígito inferior, procedemos a sumar cada resultado obtenido.
+                    </p>
+                    <img class="mult-fuerza-bruta" src="images/6.png" alt="multiplicacion-fuerza-bruta">
+                    <p>
+                        Al sumar los resultados de cada multiplicación llegamos a la respuesta. ¿Cuántas multiplicaciones se realizaron en total? Se puede apreciar que en total tuvimos que hacer 4 multiplicaciones (y tambien algunas sumas, pero por ahora tomaremos en cuenta solo las multiplicaciones),
+                        tomando en cuenta que establecimos que \(n = 2\) podemos decir que se realizaron \(n^2\) multiplicaciones.
+                    </p>
+                    <p>
+                        Desde el comienzo de las matemáticas, esta era la forma más rápida de realizar multiplicaciones, hasta que llegó Karatsuba y propuso hacer una optimización que consiste en transformar una multiplicación en algunas sumas.
+                        Para poder entender esta optimización necesitamos ver la multiplicación de manera diferente, a continuación te mostraremos un ejemplo, con una multiplicacion de 4 dígitos.
+                    </p>
+                <hr>
+                <h3>Multiplicación mediante paradigma de Divide y Vencerás</h3>
+                    <p>El algoritmo de multiplicación que conocemos se puede implementar de una manera recursiva utilizando el paradigma de Divide y Vencerás, para ilustrar este proceso, se tiene el siguiente ejemplo.</p>
+                    <img src="images/7.png" alt="multipicación divide y Vencerás">
+                    <p>Podemos ver que para este caso, \(n = 4\), ya que el número de dígitos a multiplicar es de 4, para aplicar el paradigma de Divide y Vencerás, primero tenemos que pensar en como descomponer este problema
+                        en pasos mas pequeños, para lograr esto, primero tenemos que dividir el problema hasta llegar a un caso base.
+                    </p>
+                    <img src="images/8.png" alt="">
+                    <p>
+                        Podemos observar que el problema ha sido divido a la mitad, <b>a</b> y <b>b</b>  son parte de \(y\). <b>c</b> y <b>d</b> son parte de \(x\).
+                        Una vez hecho esta fragmentación, tenemos que redefinir nuestra declaración de \(x\) y \(y\).
+                    </p>
+                    <p>
+                        Para que la separación que hicimos tenga sentido, tenemos que redefinir \(x\) y \(y\) de la siguiente manera: <br> <br>
+                        <div class="centered-math">
+                        <p> \(x = (10^{n/2}*c)+d\) <br> </p> 
+                        <p> \(y = (10^{n/2}*a)+b\) <br> </p>
+                        </div>
+                        
+                        <em>-Espera, ¿Qué es esto?</em> <br>
+                        Simplemente es una manera de reescribir la multiplicación, vamos a analizar el término \(x = 1545\) 
+                    </p>
+                    <img src="images/9.png" alt="">
+
+                    <p>
+                        Podemos apreciar que el término correspondiente a <b>c</b> está desplazado dos ceros a la derecha debido a que el número total de dígitos es \(n = 4\), por lo que la fórmula queda como \(x = (10^{4/2}*c)+d\).
+                        Lo mismo aplica en el caso del término \(y\). Podemos notar que para un caso general, el desplazamiento siempre corresponde a \(10^{n/2}\).
+                        Despues de simplificar y sustituir los valores, tenemos: \(x = (10^{2}*15)+45 = 1545\).
+                    </p>
+
+                    <p>
+                        Habiendo establecido el porque de nuestras nuevas ecuaciones para \(x\) y \(y\), procedemos a hacer lo que todos estamos esperando, realizar la multiplicación. Esto es un simple producto de binomios. <br>
+                        <div class="centered-math">
+                        <p> \(x*y = [(10^{n/2}*c)+d] * [(10^{n/2}*a)+b] = (10^n)ac + (10^{n/2})(ad + bc) + bd\) <br> </p> 
+                        </div>
+                        Esta expresión puede parecer intimdante, pero simplemente es la multiplicación que ya conocemos vista de otra manera, específicamente bajo el paradigma de Divice y Vencerás, ya que dividimos el problema inicial en
+                        subproblemas más pequeños. Nuestro caso base, es decir, la forma a la que tenemos que llegar para saber que el problema ya no es divisible, es la multiplicación de un número de un dígito por un dígito, en otras palabras, que \(n = 1\).
+                    </p>
+                <hr>
+                <h3>Análisis de complejidad para multiplicación utilizando Divide y Vencerás</h3>
+                <p>Se viene la parte ruda, si no te interesa el análisis de complejidad de este algoritmo, puedes saltarte a la sección de "El hallazgo de Karatsuba". <br>
+                La expresión \((10^n)ac + (10^{n/2})(ad + bc) + bd\) consta de 4 multiplicaciones básicas*, <b>ac</b>, <b>ad</b>, <b>bc</b>, y <b>bd</b>. Estas operaciones básicas se ejecutan en cada llamada recursiva, y para resolver cada una de ellas se utiliza la misma expresión. Podemos ver
+                que para cada nivel de recursión, se tienen que efectuar 4 multiplicaciones básicas hasta llegar al caso base, mas adelante visualizaremos esto mediante un árbol, por ahora tendrás que imaginarlo.
+                
+                Genial! ya sabemos cuántas multiplicaciones se hacen en cada llamada recursiva, ahora tenemos que calcular cuántas sumas básicas** se realizan, esto es un poco más engañoso de lo que parece a simple vista.
+               <br><br>  * Por multiplicaciones básicas se entiende el caso más simple de la multiplicación, es decir,  la multiplicación de un número de un dígito por un dígito, cuando \(n = 1\)
+               <br>  ** Por sumas básicas se entiende el caso base de la suma, es decir, las sumas más pequeñas que podemos hacer, la acción de sumar un dígito con otro dígito.
+
+                </p>
         </div>
     </div>
         

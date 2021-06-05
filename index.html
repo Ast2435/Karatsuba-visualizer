@@ -152,7 +152,39 @@
                 <p><em>-¿Y a mi para que me sirve saber esto?</em></p>
                 <p>Porque ya teniendo esta información podemos hacer una linda <b>relación de recurrencia</b> para analizar nuestro algoritmo de multiplicación mediante el método de Divide y Vencerás <br>
                    Sabiendo el hecho de que cada llamada recursiva va a realizar \(4\) multiplicaciones básicas y \(2n\) sumas básicas, podemos decir que:
-                   
+                </p>
+                <div class="centered-math">
+                    <p>\(T(n) = 4T(n/2) + 2n\)</p>
+                </div>
+                <p>Utilizaremos el Teorema Maestro para resolver esta recurrencia, podemos apreciar que:
+                </p>
+                <div class="centered-math">
+                    <p>\(a = 4\)<br>
+                    \(b = 2\)<br>
+                    \(2n = \mathcal{O}(n^c), c = 1\) <br>
+                    </p>
+                    <p>
+                        \({log_{b}(a)} = {log_{2}(4)} = 2\)
+                    </p>
+                    <p>
+                        \(c &lt; {log_{b}(a)}\)
+                    </p>
+                </div>
+                <p>
+                    Podemos ver que nos encontramos en el Caso 1 del Teorema Maestro, por lo que podemos decir que:
+                </p>
+                <div class="centered-math">
+                    <p>
+                        \(T(n) = n^{{log_{2}(4)}}\)
+                    </p>
+                    <p>
+                        \(T(n) = \mathcal{O}(n^2)\)
+                    </p>
+                </div>
+                <p><br><em>Ok, muy interesante... Espera... aplicamos el paradigma de Divide y Vencerás, pero aun así ¿La complejidad es la misma que el método por fuerza bruta?</em></p>
+                <p>
+                    Es correcto, aplicar el paradigma de Divide y Vencerás no es suficiente para mejorar la complejidad de la multiplicación, pero ya estamos mas cerca de la respuesta, Karatsuba encontró
+                    la manera de mejorar este algoritmo, en la siguiente sección hablaremos de esto más a fondo.
                 </p>
                 <p>
                     <br>  * Por multiplicaciones básicas se entiende el caso más simple de la multiplicación, es decir,  la multiplicación de un número de un dígito por un dígito, cuando \(n = 1\)
@@ -160,6 +192,12 @@
                 </p>
                 <hr>
                 <h3>El hallazgo de Karatsuba</h3>
+                <p>Si eres observador te habrás dado cuenta de que el problema radica en que aunque hayamos dividido el problema, aun tenemos que hacer 4 multiplicaciones en cada llamada recursiva,
+                    observemos de nuevo nuestra ecuación: <br>
+                </p>
+                <div class="centered-math">
+                    <p>\((10^n)ac + (10^{n/2})(ad + bc) + bd\) <br> </p>
+                </div>
         </div>
     </div>
         

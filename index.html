@@ -40,21 +40,27 @@
                         Para poder entender por que el algoritmo de Karatsuba es mas eficiente, tenemos que analizar el algoritmo que ya conocemos y amamos... El algoritmo de multiplicación por fuerza bruta.
                         Este algoritmo es el que la mayoría utilizamos para resolver multiplicaciones en papel. Analicemos el siguiente ejemplo:
                     </p>
-                    <img class="mult-fuerza-bruta" src="images/1.png" alt="multiplicacion-fuerza-bruta">
+                    <img class="rounded mx-auto d-block" src="images/1.png" alt="multiplicacion-fuerza-bruta">
                     <p>
                         Si decimos que \(n\) es la cantidad de dígitos a multiplicar, podemos decir que para este ejemplo \(n = 2\).
                     </p>
-                    <img class="mult-fuerza-bruta" src="images/2.png" alt="multiplicacion-fuerza-bruta">
-                    <img class="mult-fuerza-bruta" src="images/3.png" alt="multiplicacion-fuerza-bruta">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img  src="images/2.png" alt="multiplicacion-fuerza-bruta">
+                        <img  src="images/3.png" alt="multiplicacion-fuerza-bruta">
+                    </div>
+                    
                     <p>
                         Tenemos que multiplicar cada dígito de la parte inferior por cada dígito de la parte superior y guardamos el resultado. 
                     </p>
-                    <img class="mult-fuerza-bruta" src="images/4.png" alt="multiplicacion-fuerza-bruta">
-                    <img class="mult-fuerza-bruta" src="images/5.png" alt="multiplicacion-fuerza-bruta">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img  src="images/4.png" alt="multiplicacion-fuerza-bruta">
+                        <img  src="images/5.png" alt="multiplicacion-fuerza-bruta">
+                    </div>
+
                     <p>
                         Una vez efectuada la multiplicación en cada dígito inferior, procedemos a sumar cada resultado obtenido.
                     </p>
-                    <img class="mult-fuerza-bruta" src="images/6.png" alt="multiplicacion-fuerza-bruta">
+                    <img class="rounded mx-auto d-block" src="images/6.png" alt="multiplicacion-fuerza-bruta">
                     <p>
                         Al sumar los resultados de cada multiplicación llegamos a la respuesta. ¿Cuántas multiplicaciones se realizaron en total? Se puede apreciar que en total tuvimos que hacer 4 multiplicaciones (y tambien algunas sumas, pero por ahora tomaremos en cuenta solo las multiplicaciones),
                         tomando en cuenta que establecimos que \(n = 2\) podemos decir que se realizaron \(n^2\) multiplicaciones.
@@ -66,11 +72,11 @@
                 <hr>
                 <h3>Multiplicación mediante paradigma de Divide y Vencerás</h3>
                     <p>El algoritmo de multiplicación que conocemos se puede implementar de una manera recursiva utilizando el paradigma de Divide y Vencerás, para ilustrar este proceso, se tiene el siguiente ejemplo.</p>
-                    <img src="images/7.png" alt="multipicación divide y Vencerás">
+                    <img class="rounded mx-auto d-block" src="images/7.png" alt="multipicación divide y Vencerás">
                     <p>Podemos ver que para este caso, \(n = 4\), ya que el número de dígitos a multiplicar es de 4, para aplicar el paradigma de Divide y Vencerás, primero tenemos que pensar en como descomponer este problema
                         en pasos mas pequeños, para lograr esto, primero tenemos que dividir el problema hasta llegar a un caso base.
                     </p>
-                    <img src="images/8.png" alt="">
+                    <img class="rounded mx-auto d-block" src="images/8.png" alt="">
                     <p>
                         Podemos observar que el problema ha sido divido a la mitad, <b>a</b> y <b>b</b>  son parte de \(y\). <b>c</b> y <b>d</b> son parte de \(x\).
                         Una vez hecho esta fragmentación, tenemos que redefinir nuestra declaración de \(x\) y \(y\).
@@ -85,7 +91,7 @@
                         <em>-Espera, ¿Qué es esto?</em> <br>
                         Simplemente es una manera de reescribir la multiplicación, vamos a analizar el término \(x = 1545\) 
                     </p>
-                    <img src="images/9.png" alt="">
+                    <img class="rounded mx-auto d-block" src="images/9.png" alt="">
 
                     <p>
                         Podemos apreciar que el término correspondiente a <b>c</b> está desplazado dos ceros a la derecha debido a que el número total de dígitos es \(n = 4\), por lo que la fórmula queda como \(x = (10^{4/2}*c)+d\).
@@ -105,13 +111,55 @@
                 <h3>Análisis de complejidad para multiplicación utilizando Divide y Vencerás</h3>
                 <p>Se viene la parte ruda, si no te interesa el análisis de complejidad de este algoritmo, puedes saltarte a la sección de "El hallazgo de Karatsuba". <br>
                 La expresión \((10^n)ac + (10^{n/2})(ad + bc) + bd\) consta de 4 multiplicaciones básicas*, <b>ac</b>, <b>ad</b>, <b>bc</b>, y <b>bd</b>. Estas operaciones básicas se ejecutan en cada llamada recursiva, y para resolver cada una de ellas se utiliza la misma expresión. Podemos ver
-                que para cada nivel de recursión, se tienen que efectuar 4 multiplicaciones básicas hasta llegar al caso base, mas adelante visualizaremos esto mediante un árbol, por ahora tendrás que imaginarlo.
+                que para cada nivel de recursión, se tienen que efectuar 4 multiplicaciones básicas hasta llegar al caso base, mas adelante visualizaremos esto mediante un árbol, por ahora tendrás que imaginarlo. <br>
                 
-                Genial! ya sabemos cuántas multiplicaciones se hacen en cada llamada recursiva, ahora tenemos que calcular cuántas sumas básicas** se realizan, esto es un poco más engañoso de lo que parece a simple vista.
-               <br><br>  * Por multiplicaciones básicas se entiende el caso más simple de la multiplicación, es decir,  la multiplicación de un número de un dígito por un dígito, cuando \(n = 1\)
-               <br>  ** Por sumas básicas se entiende el caso base de la suma, es decir, las sumas más pequeñas que podemos hacer, la acción de sumar un dígito con otro dígito.
+                Genial! ya sabemos cuántas multiplicaciones se hacen en cada llamada recursiva, ahora tenemos que calcular cuántas sumas básicas** se realizan, esto es un poco más engañoso de lo que parece a simple vista. <br>
 
+                Para calcular cuántas sumas básicas hay en nuestro algoritmo tenemos que fijarnos en la longitud \(n\) de los números a multiplicar. Si multiplicamos un número de 2 dígitos por otro de 2 dígitos, obtenemos un número de 4 dígitos. Podemos generalizar que si multiplicamos un número con longitud \(n/2\) por otro número
+                con longitud \(n/2\) obtendremos un número de longitud \(n\). Saber esto es importante porque analizaremos la longitud de las multiplicaciones en nuestra ecuación para calcular las sumas básicas a realizar. <br> <br>
+                Tenemos las siguientes multiplicaciones: <br></p>
+                <div class="centered-math">
+                  <p>\(ac\) <br>
+                    \(ad\) <br>
+                    \(bc\) <br>
+                    \(bd\) <br> </p>
+                </div>
+                <p>Que obtuvimos de: </p>
+                <div class="centered-math">
+                    <p>\((10^n)ac + (10^{n/2})(ad + bc) + bd\) <br> </p>
+                </div>
+                Podemos notar que en \(ad\) estamos multiplicando 2 números de longitud \(n/2\), lo mismo sucede con \(bc\), tomando en cuenta lo mencionado anteriormente sabemos que la longitud del número resultante de estas multiplicaciones será de \(n\) (longitud \(n/2 * n/2 = n\)),
+                despues, vemos que los resultados de dichas multiplcaciones se suman, por lo que estamos obteniendo la suma de un número de longitud \(n\) mas otro número de longitud \(n\). ¿Cuántas sumas estamos realizando en total?<br>
+                Sumemos dos números de longitud \(n = 4\) para ver cuantas sumas básicas nos toma:
                 </p>
+                <img class="rounded mx-auto d-block" src="images/10.png" alt="">
+                <p>
+                    Se aprecia que para una suma de longitud \(n = 4\) se realizan \(n\) sumas básicas, esto se va a cumplir siempre. <br> <br>
+                    Ok, ya sabemos cuántas sumas se realizan en el término del medio de nuestra ecuación, ¿Y que hay de los extremos \(ac\) y \(bd\)?<br>
+                    Bueno, las sumas de los extremos no se toman en cuenta, esto se debe a que \(ac\) está siendo desplazado \(n\) lugares a la izquierda, y \(bd\) es de longitud \(n\), ¿Ves lo que sucede?
+                    Si aun no te das cuenta, te lo mostramos en la siguiente imágen: 
+                </p>
+                <img src="images/11.png" alt="" class="rounded mx-auto d-block">
+                <p>
+                    ¿Por que haría una suma básica si simplemente puedo concatenar los dos valores y optimizar? Las cosas se acomodan perfectamente para evitar realizar esta suma. <br>
+
+                    Entonces, podemos ver que lo único que falta por hacer es la suma de los resultados que ya obtuvimos anteriormente: \((ad + bc) + (ac + bd)\), para el término de \((ad + bc)\) ya establecimos que se necesitan \(n\) sumas básicas,
+                    y para el término \((ad + bc)\) no tuvimos que sumar nada ya que se trata de una concatenación, ahora, para sumar estos dos números tenemos que calcular cuántas sumas básicas se requieren, tenemos un número de longitud \(2n\) que obtuvimos al concatenar \((ac + bd)\)
+                    y otro término de longitud \(n\) que obtuvimos al multiplicar y sumar \((ad + bc)\)
+                </p>
+                <img class="rounded mx-auto d-block" src="images/12.png" alt="">
+                <p>Al sumar estos dos términos podemos ver que los únicos lugares que necesitan una suma son \(n\) lugares, por lo que se realizan \(n\) sumas básicas. En total, obtuvimos que en todo el algoritmo se realizan \(2n\) sumas básicas para cada nivel de nuestra llamada recursiva. </p>
+                <p><em>-¿Y a mi para que me sirve saber esto?</em></p>
+                <p>Porque ya teniendo esta información podemos hacer una linda <b>relación de recurrencia</b> para analizar nuestro algoritmo de multiplicación mediante el método de Divide y Vencerás <br>
+                   Sabiendo el hecho de que cada llamada recursiva va a realizar \(4\) multiplicaciones básicas y \(2n\) sumas básicas, podemos decir que:
+                   
+                </p>
+                <p>
+                    <br>  * Por multiplicaciones básicas se entiende el caso más simple de la multiplicación, es decir,  la multiplicación de un número de un dígito por un dígito, cuando \(n = 1\)
+                    <br>  ** Por sumas básicas se entiende el caso base de la suma, es decir, las sumas más pequeñas que podemos hacer, la acción de sumar un dígito con otro dígito.
+                </p>
+                <hr>
+                <h3>El hallazgo de Karatsuba</h3>
         </div>
     </div>
         

@@ -149,8 +149,10 @@
                 </p>
                 <img class="rounded mx-auto d-block" src="images/12.png" alt="">
                 <p>Al sumar estos dos términos podemos ver que los únicos lugares que necesitan una suma son \(n\) lugares, por lo que se realizan \(n\) sumas básicas. En total, obtuvimos que en todo el algoritmo se realizan \(2n\) sumas básicas para cada nivel de nuestra llamada recursiva. </p>
+
+                <h4>Relación de recurrencia</h4>
                 <p><em>-¿Y a mi para que me sirve saber esto?</em></p>
-                <p>Porque ya teniendo esta información podemos hacer una linda <b>relación de recurrencia</b> para analizar nuestro algoritmo de multiplicación mediante el método de Divide y Vencerás <br>
+                <p>Es importante, ya que teniendo esta información podemos hacer una linda <b>relación de recurrencia</b> para analizar nuestro algoritmo de multiplicación mediante el método de Divide y Vencerás <br><br>
                    Sabiendo el hecho de que cada llamada recursiva va a realizar \(4\) multiplicaciones básicas y \(2n\) sumas básicas, podemos decir que:
                 </p>
                 <div class="centered-math">
@@ -216,9 +218,91 @@
                 <hr>
                 <h3>Análisis de complejidad para el algoritmo de Karatsuba</h3>
                 <p>
-                    De la expresión obtenida despues de aplicar la opmitización de karatsuba, podemos ver que en nuestra ecuación ahora tiene 3 multiplicaciones, siendo que anteriormente tenía 4.
-                    En cuánto a sumas básicas, podemos notar que el término \((a + b) (c + d) \) en total contiene \(n\) sumas básicas, ya que \((a + b)\) realiza \(n/2\) sumas básicas, y \((c + d)\) tambien realiza \(n/2\) sumas básicas.
+                    De la expresión obtenida despues de aplicar la opmitización de karatsuba, podemos ver que nuestra ecuación ahora tiene \(3\) multiplicaciones, siendo que anteriormente tenían \(4\).
+                    En cuánto a sumas básicas, podemos notar que el término \((a + b) (c + d) \) en total contiene \(n\) sumas básicas, ya que \((a + b)\) realiza \(n/2\) sumas básicas, y \((c + d)\) tambien realiza \(n/2\) sumas básicas. <br> <br>
+                    El resultado de esta multiplicación nos da un número de longitud \(n\), a este número le vamos a restar el término \(ac\), para realizar el análisis, una resta se puede tomar como una suma básica en término de complejidad, entonces, tenemos un número de longitud \(n\) y le restamos
+                    otro número de longitud \(n\), ¿Cuántas sumas básicas realizamos? Como ya demostramos anteriormente, esto nos va a costar \(n\) sumas básicas. Por último, al resultado de esta resta, se le vuelve a restar el término \(bd\), como sucedió con el término anterior, esto tendrá un costo de
+                    \(n\) sumas básicas. <br><br>
+                    En total, podemos ver que para calcular esta expresión se necesitan \(3n\) sumas básicas. Esto ya implica mas sumas que el enfoque anterior, y aún no terminamos, ya que, como en el ejemplo anterior, nos falta
+                    sumar los extremos. <br><br>
+                    Sabemos que la suma de los extremos \((10^n)ac + bd\) no se cuenta como una suma básica, ya que simplemente se puede ver como una concatenación, pero, como se explicó en la seccion anterior, el hecho de sumar el resultado de esta concatenación con el resultado obtenido del término del medio nos cuesta una suma básica más, entonces,
+                    en total tenemos \(3n + n = 4n\) sumas básicas.
                 </p>
+                <h4>Relación de recurrencia</h4>
+                <p>Ahora que ya tenemos más información acerca del comportamiento de este modelo, sabemos que en total se realizan \(3\) multiplicaciones básicas y \(4n\) sumas básicas en cada nivel de recursión, como puedes ver, se redujo el número de multiplicaciones, pero el número de sumas a realizar ahora es el doble, en términos de Divide y Vencerás esto significa que hay una menor cantidad
+                    de subproblemas a resolver, pero la unión del resultado de cada subproblema es más costosa, ¿Cómo afecta esto a la complejidad del algoritmo? ¿De verdad será mas eficiente? Vamos a realizar una <b>relación de recurrencia</b> para averiguarlo, dado los datos obtenidos, podemos decir que:
+                </p>
+                <div class="centered-math">
+                    <p>\(T(n) = 3T(n/2) + 4n\)</p>
+                </div>
+                <p>De nuevo, utilizando el Teorema Maestro para resolver esta recurrencia, tenemos:</p>
+                <div class="centered-math">
+                    <p>\(a = 3\)<br>
+                    \(b = 2\)<br>
+                    \(4n = \mathcal{O}(n^c), c = 1\) <br>
+                    </p>
+                    <p>
+                        \({log_{b}(a)} = {log_{2}(3)} \approx 1.58\)
+                    </p>
+                    <p>
+                        \(c &lt; {log_{b}(a)}\)
+                    </p>
+                </div>
+                <p>
+                    Podemos ver que, de nuevo, nos encontramos con el Caso 1 del Teorema Maestro, por lo que el resultado del análisis de la recurrencia es:
+                </p>
+                <div class="centered-math">
+                    <p>
+                        \(T(n) = n^{{log_{2}(3)}}\)
+                    </p>
+                    <p>
+                        \(T(n) = \mathcal{O}(n^{1.58})\)
+                    </p>
+                </div>
+                <p>Esto es fascinante, ya que comprobamos que el cambio que realizó Karatsuba eliminó una multiplicación básica por el costo de añadir algunas sumas básica,
+                   debido a esto, la complejidad del algoritmo ha mejorado.
+                </p>
+                <hr>
+                <h3>Comparación</h3>
+                <p>El algoritmo de Karatsuba es teóricamente más rápido que el de la multiplicación por fuerza bruta, pero es dificil apreciar la optimización solo mirando las fórmulas, asi que pondremos
+                    ambos algoritmos en acción para ver como se comportan.
+                </p>
+                <p>Veremos como se comportan ambos algoritmos tratando de multiplicar números de \(100,000\) dígitos, es decir, con un tamaño de problema \(n = 100,000\)</p>
+                <h4>Multiplicación por fuerza bruta</h4>
+                <p>
+                    Establecimos que la complejidad de este algoritmo es de:
+                </p>
+                <div class="centered-math">
+                    <p>
+                        \(n^2\)
+                    </p>
+                </div>
+                <p>Entonces tenemos que: </p>
+                <div class="centered-math">
+                    \(100,000^2 = 10,000,000,000\)
+                </div>
+                <p><br> ¡Uy! Esos son muchas operaciones básicas, el cómputo de esto va a tomar mucho tiempo.</p>
+                <h4>Algoritmo de Karatsuba</h4>
+                <p>
+                    Establecimos que la complejidad de este algoritmo es de:
+                </p>
+                <div class="centered-math">
+                    <p>
+                        \(n^{1.58}\)
+                    </p>
+                </div>
+                <p>Entonces tenemos que: </p>
+                <div class="centered-math">
+                    \(100,000^{1.58} = 79,432,824\)
+                </div>
+                <p><br> Esto parece ser una cantidad más razonable de operaciones para un número con una longitud tan grande.</p>
+                <p>¿Cuántas operaciones nos ahorramos para un tamaño de problema \(n = 100,000\)? Hagamos el cálculo. </p>
+                <div class="centered-math">
+                    <p>
+                        \(10,000,000,000 - 79,432,824 = 9,920,567,176\)
+                    </p>
+                </div>
+                <p>Podemos ver que nos ahorramos \(9,920,567,176\) ¡Esto es una optimización masiva! podemos ver que todo el trabajo realizado valió la pena.</p>
         </div>
     </div>
         

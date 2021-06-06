@@ -198,6 +198,27 @@
                 <div class="centered-math">
                     <p>\((10^n)ac + (10^{n/2})(ad + bc) + bd\) <br> </p>
                 </div>
+                <p>¿Qué podemos hacer para mejorar esto? la respuesta está en el término \(ad + bc\). <br>
+                Karatsuba se dio cuenta de que ese término se podía reescribir como:
+                </p>
+                <div class="centered-math">
+                    <p>\((a + b) (c + d) - ac - bd\) <br> </p>
+                </div>
+                <p>
+                    Recuerda que \(ac\) y \(ac\) ya los calculamos anteriormente, ya son los extremos de la primera ecuación. Haciendo uso de esto podemos ver que la primera ecuación se reduce a:
+                </p>
+                <div class="centered-math">
+                    <p>\((10^n)ac + (10^{n/2})[(a + b) (c + d) - ac - bd] + bd\) <br> </p>
+                </div>
+                <p>
+                    Esto es excelente! a cambio de unas sumas básicas extra, logramos reducir las multiplicaciones básicas en cada llamada recursiva. Pero, ¿Cuántas sumas básicas extra son? ¿De verdad este pequeño cambio mejora la complejidad del algoritmo?
+                </p>
+                <hr>
+                <h3>Análisis de complejidad para el algoritmo de Karatsuba</h3>
+                <p>
+                    De la expresión obtenida despues de aplicar la opmitización de karatsuba, podemos ver que en nuestra ecuación ahora tiene 3 multiplicaciones, siendo que anteriormente tenía 4.
+                    En cuánto a sumas básicas, podemos notar que el término \((a + b) (c + d) \) en total contiene \(n\) sumas básicas, ya que \((a + b)\) realiza \(n/2\) sumas básicas, y \((c + d)\) tambien realiza \(n/2\) sumas básicas.
+                </p>
         </div>
     </div>
         

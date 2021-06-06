@@ -135,7 +135,7 @@
                 <img class="rounded mx-auto d-block" src="images/10.png" alt="">
                 <p>
                     Se aprecia que para una suma de longitud \(n = 4\) se realizan \(n\) sumas básicas, esto se va a cumplir siempre. <br> <br>
-                    Ok, ya sabemos cuántas sumas se realizan en el término del medio de nuestra ecuación, ¿Y que hay de los extremos \(ac\) y \(bd\)?<br>
+                    Ok, ya sabemos cuántas sumas se realizan en el término del medio de nuestra expresión, ¿Y que hay de los extremos \(ac\) y \(bd\)?<br>
                     Bueno, las sumas de los extremos no se toman en cuenta, esto se debe a que \(ac\) está siendo desplazado \(n\) lugares a la izquierda, y \(bd\) es de longitud \(n\), ¿Ves lo que sucede?
                     Si aun no te das cuenta, te lo mostramos en la siguiente imágen: 
                 </p>
@@ -195,7 +195,7 @@
                 <hr>
                 <h3>El hallazgo de Karatsuba</h3>
                 <p>Si eres observador te habrás dado cuenta de que el problema radica en que aunque hayamos dividido el problema, aun tenemos que hacer 4 multiplicaciones en cada llamada recursiva,
-                    observemos de nuevo nuestra ecuación: <br>
+                    observemos de nuevo nuestra expresión: <br>
                 </p>
                 <div class="centered-math">
                     <p>\((10^n)ac + (10^{n/2})(ad + bc) + bd\) <br> </p>
@@ -207,7 +207,7 @@
                     <p>\((a + b) (c + d) - ac - bd\) <br> </p>
                 </div>
                 <p>
-                    Recuerda que \(ac\) y \(ac\) ya los calculamos anteriormente, ya son los extremos de la primera ecuación. Haciendo uso de esto podemos ver que la primera ecuación se reduce a:
+                    Recuerda que \(ac\) y \(ac\) ya los calculamos anteriormente, ya son los extremos de la primera expresión. Haciendo uso de esto podemos ver que la primera expresión se reduce a:
                 </p>
                 <div class="centered-math">
                     <p>\((10^n)ac + (10^{n/2})[(a + b) (c + d) - ac - bd] + bd\) <br> </p>
@@ -218,7 +218,7 @@
                 <hr>
                 <h3>Análisis de complejidad para el algoritmo de Karatsuba</h3>
                 <p>
-                    De la expresión obtenida despues de aplicar la opmitización de karatsuba, podemos ver que nuestra ecuación ahora tiene \(3\) multiplicaciones, siendo que anteriormente tenían \(4\).
+                    De la expresión obtenida despues de aplicar la opmitización de karatsuba, podemos ver que nuestra expresión ahora tiene \(3\) multiplicaciones, siendo que anteriormente tenían \(4\).
                     En cuánto a sumas básicas, podemos notar que el término \((a + b) (c + d) \) en total contiene \(n\) sumas básicas, ya que \((a + b)\) realiza \(n/2\) sumas básicas, y \((c + d)\) tambien realiza \(n/2\) sumas básicas. <br> <br>
                     El resultado de esta multiplicación nos da un número de longitud \(n\), a este número le vamos a restar el término \(ac\), para realizar el análisis, una resta se puede tomar como una suma básica en término de complejidad, entonces, tenemos un número de longitud \(n\) y le restamos
                     otro número de longitud \(n\), ¿Cuántas sumas básicas realizamos? Como ya demostramos anteriormente, esto nos va a costar \(n\) sumas básicas. Por último, al resultado de esta resta, se le vuelve a restar el término \(bd\), como sucedió con el término anterior, esto tendrá un costo de
@@ -229,7 +229,7 @@
                     en total tenemos \(3n + n = 4n\) sumas básicas.
                 </p>
                 <h4>Relación de recurrencia</h4>
-                <p>Ahora que ya tenemos más información acerca del comportamiento de este modelo, sabemos que en total se realizan \(3\) multiplicaciones básicas y \(4n\) sumas básicas en cada nivel de recursión, como puedes ver, se redujo el número de multiplicaciones, pero el número de sumas a realizar ahora es el doble, en términos de Divide y Vencerás esto significa que hay una menor cantidad
+                <p>Ahora que ya tenemos más información acerca del comportamiento de esta expresión, sabemos que en total se realizan \(3\) multiplicaciones básicas y \(4n\) sumas básicas en cada nivel de recursión, como puedes ver, se redujo el número de multiplicaciones, pero el número de sumas a realizar ahora es el doble, en términos de Divide y Vencerás esto significa que hay una menor cantidad
                     de subproblemas a resolver, pero la unión del resultado de cada subproblema es más costosa, ¿Cómo afecta esto a la complejidad del algoritmo? ¿De verdad será mas eficiente? Vamos a realizar una <b>relación de recurrencia</b> para averiguarlo, dado los datos obtenidos, podemos decir que:
                 </p>
                 <div class="centered-math">
@@ -264,7 +264,7 @@
                 </p>
                 <hr>
                 <h3>Comparación</h3>
-                <p>El algoritmo de Karatsuba es teóricamente más rápido que el de la multiplicación por fuerza bruta, pero es dificil apreciar la optimización solo mirando las fórmulas, asi que pondremos
+                <p>El algoritmo de Karatsuba es teóricamente más rápido que el de la multiplicación por fuerza bruta, pero es dificil apreciar la optimización tan solo mirando las fórmulas, asi que pondremos
                     ambos algoritmos en acción para ver como se comportan.
                 </p>
                 <p>Veremos como se comportan ambos algoritmos tratando de multiplicar números de \(100,000\) dígitos, es decir, con un tamaño de problema \(n = 100,000\)</p>
@@ -302,7 +302,8 @@
                         \(10,000,000,000 - 79,432,824 = 9,920,567,176\)
                     </p>
                 </div>
-                <p>Podemos ver que nos ahorramos \(9,920,567,176\) ¡Esto es una optimización masiva! podemos ver que todo el trabajo realizado valió la pena.</p>
+                <p>Podemos ver que nos ahorramos \(9,920,567,176\) operaciones ¡Esto es una optimización masiva! Podemos ver que todo el trabajo realizado valió la pena.</p>
+                <hr>
         </div>
     </div>
         

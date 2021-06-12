@@ -6,6 +6,7 @@
 
     <script src="assets/jQuery.js"></script>
     <script src="assets/popper.js"></script>
+    <script src="text/javascript" src="script.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <!-- ecuaciones-->
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -307,19 +308,19 @@
                 <hr>
         </div>
         <div> 
-            <form action="Karatsuba.html" method="GET">
+            <form action="" id="form">
                 <div>
                     <p><br> Comencemos con la demostracion, para este caso introduce dos numeros, cualesquiera, siempre y cuando sean del mismo tamaño y no sean de mas </p>
                     <p> 8 digitos. </p>
                     <div>
                         <label> Numero 1: </label>
-                        <input name="numero1">
+                        <input type= "number" id="numero1" name="numero1">
                     </div>                    
                     <div>
                         <label> Numero 2: </label>
-                        <input name="numero2">
+                        <input type= "number" id="numero2" name="numero2">
                     </div>
-                    <button> Comenzar </button>
+                    <button type="button"> Comenzar </button>
                 </div>                
         </div>
     </div>

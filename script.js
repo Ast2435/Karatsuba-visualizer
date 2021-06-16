@@ -1,16 +1,10 @@
-var jsav = new JSAV("JSAV-container");
-var arr = [7, 8, 9, 10];
-
-jsav.label("Normal Array");
-var arr1 = jsav.ds.array(arr);
-arr1.highlight(1);
-arr1.css(2, {"background-color": "aqua", "color": "rgb(150, 55, 50)"});
-arr1.layout();
+var numero1;
+var numero2;
 
 var getDatos = function ()
 {
-  var numero1 = document.getElementById("numero1").value;
-  var numero2 = document.getElementById("numero2").value;
+  numero1 = document.getElementById("numero1").value;
+  numero2 = document.getElementById("numero2").value;
   if (numero1=="")
   {
     document.getElementById("numero1").focus();
@@ -27,8 +21,20 @@ var getDatos = function ()
       document.getElementById("numero1").value="";
       document.getElementById("numero2").value="";
       document.getElementById("numero1").focus();
+      
+      visualizar(numero1, numero2);
     }
   }
+}
+
+function visualizar(a, b){
+  karatsuba(a, b);
+  //console.log(karatsuba(a, b));
+  //console.log(a * b);
+  var arr = toArray(a, b);
+  //console.log(arr);
+  animate(arr, 1, arr.length);
+
 }
 
 function karatsuba(x,y)
@@ -64,14 +70,51 @@ function karatsuba(x,y)
 
   var res  =   (z2 *  Math.pow(10, 2 * m )  ) + ( (z1-z2-z0) * Math.pow(10,  m )) + z0;
 
+
   return res;
+}
 
- }
+var k = 0;
+childs = [];
+function animate(arr, init, len){
+  var jsav = new JSAV("JSAV-container");
 
-var a = 12345;
-var b = 6789;
-console.log(karatsuba(a,b));
-console.log(a * b);
+  if(init == 1){
+    jsav.label("Algoritmo de Karatsuba");
+    var arr1 = jsav.ds.array(arr);
+    arr1.layout();
+    var half = len;
+    animate(arr, 0, half);
+  }
+  else{
+    half = Math.ceil(len / 2);
+    console.log(half);
+    if(half > 1){
+    //console.log(half);
+    var firstHalf = arr.slice(0, half);
+    childs[k] = jsav.ds.array(firstHalf);
+    childs[k].layout();
+    k++;
+    animate(firstHalf, 0, half);
+    var secondHalf = arr.slice(-half);
+    childs[k] = jsav.ds.array(secondHalf);
+    childs[k].layout();
+    k++;
+    animate(secondHalf, 0, half);
+    }
+    else{
+      return;
+    }
+  }
+}
+
+
+function toArray(a, b){
+var fullNum = "" + a + b;
+
+return Array.from(fullNum).map(Number);
+}
+
 
 
 

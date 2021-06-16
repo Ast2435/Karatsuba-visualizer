@@ -76,21 +76,32 @@ function karatsuba(x,y)
 
 var k = 0;
 childs = [];
+var jsav = new JSAV("JSAV-container");
 function animate(arr, init, len){
-  var jsav = new JSAV("JSAV-container");
+
+  if (arr.length <= 2){
+    var firstHalf = arr.slice(0, len/2);
+    var caseBase1 = jsav.ds.array(firstHalf);
+    caseBase1.layout();
+    var secondHalf = arr.slice(-len/2);
+    var caseBase2 = jsav.ds.array(secondHalf);
+    caseBase2.layout();
+  return;
+  }
 
   if(init == 1){
     jsav.label("Algoritmo de Karatsuba");
-    var arr1 = jsav.ds.array(arr);
-    arr1.layout();
+    var firstArr = jsav.ds.array(arr);
+    firstArr.layout();
     var half = len;
     animate(arr, 0, half);
   }
+
   else{
     half = Math.ceil(len / 2);
-    console.log(half);
-    if(half > 1){
     //console.log(half);
+    if(len > 2){
+    console.log(half);
     var firstHalf = arr.slice(0, half);
     childs[k] = jsav.ds.array(firstHalf);
     childs[k].layout();
@@ -101,9 +112,6 @@ function animate(arr, init, len){
     childs[k].layout();
     k++;
     animate(secondHalf, 0, half);
-    }
-    else{
-      return;
     }
   }
 }

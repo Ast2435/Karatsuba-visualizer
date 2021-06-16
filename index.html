@@ -3,12 +3,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <!-- ecuaciones-->
     <script src="assets/jQuery.js"></script>
     <script src="assets/popper.js"></script>
-    <script src="text/javascript" src="script.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <!-- ecuaciones-->
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Hoja de estilo y bootstrap-->
     <link rel="stylesheet" href="assets/JSAV/css/JSAV.css" type="text/css" media="screen" title="no title" charset="utf-8" />
@@ -320,12 +318,22 @@
                         <label> Numero 2: </label>
                         <input type= "number" id="numero2" name="numero2">
                     </div>
-                    <button type="button"> Comenzar </button>
+                    <button type="button"onclick="getDatos()""> Comenzar </button>
                 </div>                
         </div>
     </div>
         
+    <div id="JSAV-container">
+
+    </div>
 </div>
+<!-- Toneladas de JS para que funcione la librería de animación -->
+<script src="assets/JSAV/lib/jquery.min.js"></script>
+<script src="assets/JSAV/lib/jquery-ui.min.js"></script>
+<script src="assets/JSAV/lib/jquery.transit.js"></script>
+<script src="assets/JSAV/lib/raphael.js"></script>
+<script src="assets/JSAV/build/JSAV-min.js"></script>
+<script src="script.js"></script>
 
 </body>
 

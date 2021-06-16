@@ -5,3 +5,7 @@
     font-size: 20px;
 }
 
+#JSAV-container {
+    width: 90%;
+    position: relative;
+  }

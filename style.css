@@ -4,7 +4,12 @@
     align-items: center;
     font-size: 20px;
 }
-
+.primero{
+    background-color: #02457A;
+}
+.segundo{
+    background-color: #018ABE;
+}
 #JSAV-container {
     width: 90%;
     position: relative;

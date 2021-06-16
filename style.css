@@ -1,3 +1,11 @@
+body {
+    font-family: 'Quicksand';
+    font: bold;
+    font-size: 22px;
+    background-color: #018ABE;
+    color: white;
+}
+
 .centered-math{
     display: flex;
     flex-direction: column;
@@ -6,11 +14,20 @@
 }
 .primero{
     background-color: #02457A;
+    padding: 20px;
 }
 .segundo{
-    background-color: #018ABE;
+    background-color:#001848; 
+    padding: 20px;
 }
 #JSAV-container {
     width: 90%;
     position: relative;
+  }
+
+  a{
+      color: white;
+  }
+  a:hover{
+      color: white;
   }

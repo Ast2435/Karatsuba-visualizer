@@ -9,22 +9,72 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Hoja de estilo y bootstrap-->
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
     <link rel="stylesheet" href="assets/JSAV/css/JSAV.css" type="text/css" media="screen" title="no title" charset="utf-8" />
     <link rel="stylesheet" href="assets/bootstrap-5.0.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Karatsuba</title>
 </head>
+
 <body>
-<div class="container">
-    <div class="container mx-auto">
+    <div>
+        <table>
+            <font color="black"></font>
+            <tr>
+                <td><img  src="images/IPN.jpg" width="180" height="180" ></td>
+                <img  src="images/ESCOM.png" width="180" height="180"align="right">
+            </tr>
+        </table>
+        <table align="center">
+            <tr>
+                <td><h1>Instituto Politécnico Nacional</h1></td>
+            </tr>
+            <tr>
+                <td><h1>Escuela Superior de Cómputo</h1></td>
+            </tr>
+            <tr>
+                <td><h2>Equipo 1: TO-DO'S</h2></td>
+            </tr>
+        </table>
+        <table align="center"> 
+            <tr>
+                <td><h3>Aguilar Reyes Abraham Zaid</h3></td>
+                <td><img src="images/Zaid.png" width="150" height="150"></td>
+                <td><h3>Amador Félix Jesús Eduardo</h3></td>
+                <td><img src="images/Eduardo.png" width="150" height="150"></td>
+            </tr>
+            <tr><td><h3>Araiza Grijalva Jesús Arturo</h3></td>
+                <td><img src="images/Arturo.png" width="150" height="150"></td>
+                <td><h3>Balcazar Cruz Brayan Osvaldo</h3></td>
+                <td><img src="images/Brayan.png" width="150" height="150"></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h3>Índice de la página</h3>
+    <ul>
+            <li><a href="#primera-seccion" title="Algoritmo de Karatsuba">Algoritmo de Karatsuba</a></li>
+            <li><a href="#multiplicación" title="Multiplicación rápida">Multiplicación rápida</a></li>
+            <li><a href="#historia" title="Historia" >Historia</a></li>
+            <li><a href="#bruta" title="Algoritmo de multiplicación por fuerza bruta" >Algoritmo de multiplicación por fuerza bruta</a></li>
+            <li><a href="#DyV" title="Multiplicación mediante paradigma Divide y Vencerás">Multiplicación mediante paradigma Divide y Vencerás</a></li>
+            <li><a href="#complejidad" title="Análisis de complejidad para multiplicación utilizando Divide y Vencerás" >Análisis de complejidad para multiplicación utilizando Divide y Vencerás</a></li>
+            <li><a href="#Karatsuba" title="El hallazgo de Karatsuba">El hallazgo de Karatsuba</a></li>
+            <li><a href="#analizar" title="Análisis de complejidad para el algoritmo de Karatsuba" >Análisis de complejidad para el algoritmo de Karatsuba</a></li>
+            <li><a href="#Comparación" title="Comparación">Comparación</a></li>
+            <li><a href="#Demostracion" title="Demostracion">Demostración</a></li>
+    </ul>
+    </div>
+
+    <div>
         <div id="primera-seccion">
+            <div class="primero">
             <h1>Algoritmo de Karatsuba</h1>
-                <h2>Multiplicación rápida</h2>
+                <h2 id="multiplicación">Multiplicación rápida</h2>
                     <p>En esta sección te explicaremos que es el algoritmo de Karatsuba, el cual es un algoritmo que nos permite realizar multiplicación rápida, a continuación te contaremos sobre
-                su historia, como funciona, su complejidad en términos de eficiencia, como se compara con la multiplicación normal y su importancia en el mundo de los algoritmos
+                su historia, como funciona, su complejidad en términos de eficiencia, como se compara con la multiplicación normal y su importancia en el mundo de los algoritmos.
                     </p>
-                <hr>
-                <h3>Un poco de historia</h3>
+                <h3 id="historia">Un poco de historia</h3>
                     <p>
                         Hasta 1960, el procedimiento estándar para multiplicar dos números de n-dígitos era el que nos enseñaron en la primaria y usamos durante toda nuestra vida académica, 
                         este algoritmo requiere un número de operaciones elementales proporcional a  \(n^2\) (por ahora confía en que esto es verdad). Andrey Kolmogorov tenía la conjetura de que este
@@ -34,8 +84,9 @@
 
                         Sorprendido, Kolmogorov impartió múltiples conferencias sobre el hallazgo de Karatsuba, tiempo despues escribió un artículo mostrando el halalzgo de Karatsuba y lo listó como autor del mismo.
                     </p>
-                <hr>
-                <h3>Algoritmo de multiplicación por fuerza bruta</h3>
+                  </div>  
+                <div class="segundo">
+                <h3 id="bruta">Algoritmo de multiplicación por fuerza bruta</h3>
                     <p>
                         Para poder entender por que el algoritmo de Karatsuba es mas eficiente, tenemos que analizar el algoritmo que ya conocemos y amamos... El algoritmo de multiplicación por fuerza bruta.
                         Este algoritmo es el que la mayoría utilizamos para resolver multiplicaciones en papel. Analicemos el siguiente ejemplo:
@@ -69,8 +120,9 @@
                         Desde el comienzo de las matemáticas, esta era la forma más rápida de realizar multiplicaciones, hasta que llegó Karatsuba y propuso hacer una optimización que consiste en transformar una multiplicación en algunas sumas.
                         Para poder entender esta optimización necesitamos ver la multiplicación de manera diferente, a continuación te mostraremos un ejemplo, con una multiplicacion de 4 dígitos.
                     </p>
-                <hr>
-                <h3>Multiplicación mediante paradigma de Divide y Vencerás</h3>
+                    </div>
+                    <div class="primero">
+                <h3 id="DyV">Multiplicación mediante paradigma de Divide y Vencerás</h3>
                     <p>El algoritmo de multiplicación que conocemos se puede implementar de una manera recursiva utilizando el paradigma de Divide y Vencerás, para ilustrar este proceso, se tiene el siguiente ejemplo.</p>
                     <img class="rounded mx-auto d-block" src="images/7.png" alt="multipicación divide y Vencerás">
                     <p>Podemos ver que para este caso, \(n = 4\), ya que el número de dígitos a multiplicar es de 4, para aplicar el paradigma de Divide y Vencerás, primero tenemos que pensar en como descomponer este problema
@@ -107,8 +159,9 @@
                         Esta expresión puede parecer intimdante, pero simplemente es la multiplicación que ya conocemos vista de otra manera, específicamente bajo el paradigma de Divice y Vencerás, ya que dividimos el problema inicial en
                         subproblemas más pequeños. Nuestro caso base, es decir, la forma a la que tenemos que llegar para saber que el problema ya no es divisible, es la multiplicación de un número de un dígito por un dígito, en otras palabras, que \(n = 1\).
                     </p>
-                <hr>
-                <h3>Análisis de complejidad para multiplicación utilizando Divide y Vencerás</h3>
+                </div>
+                <div class="segundo">
+                <h3 id="complejidad">Análisis de complejidad para multiplicación utilizando Divide y Vencerás</h3>
                 <p>Se viene la parte ruda, si no te interesa el análisis de complejidad de este algoritmo, puedes saltarte a la sección de "El hallazgo de Karatsuba". <br>
                 La expresión \((10^n)ac + (10^{n/2})(ad + bc) + bd\) consta de 4 multiplicaciones básicas*, <b>ac</b>, <b>ad</b>, <b>bc</b>, y <b>bd</b>. Estas operaciones básicas se ejecutan en cada llamada recursiva, y para resolver cada una de ellas se utiliza la misma expresión. Podemos ver
                 que para cada nivel de recursión, se tienen que efectuar 4 multiplicaciones básicas hasta llegar al caso base, mas adelante visualizaremos esto mediante un árbol, por ahora tendrás que imaginarlo. <br>
@@ -192,8 +245,9 @@
                     <br>  * Por multiplicaciones básicas se entiende el caso más simple de la multiplicación, es decir,  la multiplicación de un número de un dígito por un dígito, cuando \(n = 1\)
                     <br>  ** Por sumas básicas se entiende el caso base de la suma, es decir, las sumas más pequeñas que podemos hacer, la acción de sumar un dígito con otro dígito.
                 </p>
-                <hr>
-                <h3>El hallazgo de Karatsuba</h3>
+            </div>
+            <div class="primero">
+                <h3 id="Karatsuba">El hallazgo de Karatsuba</h3>
                 <p>Si eres observador te habrás dado cuenta de que el problema radica en que aunque hayamos dividido el problema, aun tenemos que hacer 4 multiplicaciones en cada llamada recursiva,
                     observemos de nuevo nuestra expresión: <br>
                 </p>
@@ -215,8 +269,9 @@
                 <p>
                     Esto es excelente! a cambio de unas sumas básicas extra, logramos reducir las multiplicaciones básicas en cada llamada recursiva. Pero, ¿Cuántas sumas básicas extra son? ¿De verdad este pequeño cambio mejora la complejidad del algoritmo?
                 </p>
-                <hr>
-                <h3>Análisis de complejidad para el algoritmo de Karatsuba</h3>
+            </div>
+            <div class="segundo">
+                <h3 id="analizar">Análisis de complejidad para el algoritmo de Karatsuba</h3>
                 <p>
                     De la expresión obtenida despues de aplicar la opmitización de karatsuba, podemos ver que nuestra expresión ahora tiene \(3\) multiplicaciones, siendo que anteriormente tenían \(4\).
                     En cuánto a sumas básicas, podemos notar que el término \((a + b) (c + d) \) en total contiene \(n\) sumas básicas, ya que \((a + b)\) realiza \(n/2\) sumas básicas, y \((c + d)\) tambien realiza \(n/2\) sumas básicas. <br> <br>
@@ -262,8 +317,9 @@
                 <p>Esto es fascinante, ya que comprobamos que el cambio que realizó Karatsuba eliminó una multiplicación básica por el costo de añadir algunas sumas básica,
                    debido a esto, la complejidad del algoritmo ha mejorado.
                 </p>
-                <hr>
-                <h3>Comparación</h3>
+            </div>
+            <div class="primero">
+                <h3 id="Comparación">Comparación</h3>
                 <p>El algoritmo de Karatsuba es teóricamente más rápido que el de la multiplicación por fuerza bruta, pero es dificil apreciar la optimización tan solo mirando las fórmulas, asi que pondremos
                     ambos algoritmos en acción para ver como se comportan.
                 </p>
@@ -303,30 +359,30 @@
                     </p>
                 </div>
                 <p>Podemos ver que nos ahorramos \(9,920,567,176\) operaciones ¡Esto es una optimización masiva! Podemos ver que todo el trabajo realizado valió la pena.</p>
-                <hr>
         </div>
-        <div> 
-            <form action="" id="form">
+
+    <div>
+        <form action="" id="form">
+            <div>
+                <p><br> Comencemos con la demostracion, para este caso introduce dos numeros, cualesquiera, siempre y cuando
+                        sean del mismo tamaño y no sean de mas </p>
+                <p> 8 digitos. </p>
                 <div>
-                    <p><br> Comencemos con la demostracion, para este caso introduce dos numeros, cualesquiera, siempre y cuando sean del mismo tamaño y no sean de mas </p>
-                    <p> 8 digitos. </p>
-                    <div>
-                        <label> Numero 1: </label>
-                        <input type= "number" id="numero1" name="numero1">
-                    </div>                    
-                    <div>
-                        <label> Numero 2: </label>
-                        <input type= "number" id="numero2" name="numero2">
-                    </div>
-                    <button type="button"onclick="getDatos()""> Comenzar </button>
-                </div>                
-        </div>
+                    <label> Numero 1: </label>
+                    <input type="number" id="numero1" name="numero1">
+                </div>
+                <div>
+                    <label> Numero 2: </label>
+                    <input type="number" id="numero2" name="numero2">
+                </div>
+                <button type="button" onclick="getDatos()""> Comenzar </button>
+            </div>                
     </div>
         
     <div id="JSAV-container">
 
     </div>
-</div>
+
 <!-- Toneladas de JS para que funcione la librería de animación -->
 <script src="assets/JSAV/lib/jquery.min.js"></script>
 <script src="assets/JSAV/lib/jquery-ui.min.js"></script>

@@ -1,3 +1,5 @@
+var jsav = new JSAV("JSAV-container");
+jsav.label("Algoritmo de Karatsuba");
 var numero1;
 var numero2;
 
@@ -76,7 +78,7 @@ function karatsuba(x,y)
 
 var k = 0;
 childs = [];
-var jsav = new JSAV("JSAV-container");
+
 function animate(arr, init, len){
 
   if (arr.length <= 2){
@@ -89,31 +91,37 @@ function animate(arr, init, len){
   return;
   }
 
-  if(init == 1){
-    jsav.label("Algoritmo de Karatsuba");
-    var firstArr = jsav.ds.array(arr);
-    firstArr.layout();
-    var half = len;
-    animate(arr, 0, half);
-  }
-
-  else{
-    half = Math.ceil(len / 2);
     //console.log(half);
-    if(len > 2){
-    console.log(half);
-    var firstHalf = arr.slice(0, half);
-    childs[k] = jsav.ds.array(firstHalf);
-    childs[k].layout();
-    k++;
-    animate(firstHalf, 0, half);
-    var secondHalf = arr.slice(-half);
-    childs[k] = jsav.ds.array(secondHalf);
-    childs[k].layout();
-    k++;
-    animate(secondHalf, 0, half);
+    if(len > 2 && init == 1){
+      var firstArr = jsav.ds.array(arr);
+      firstArr.layout();
+      var half = len;
+      animate(arr, 0, half);
     }
-  }
+    else if(len > 2){
+      half = Math.ceil(len / 2);
+      console.log(half);
+      var firstHalf = arr.slice(0, half);
+      childs[k] = jsav.ds.array(firstHalf);
+      childs[k].layout();
+      k++;
+      animate(firstHalf, 0, half);
+      if(len%2 != 0){ //si el numero de elementos a dividir es impar, se tiene que tomar en cuenta, si no hay duplicidad de datos donde se hace la division
+        var secondHalf = arr.slice(-half+1);
+        childs[k] = jsav.ds.array(secondHalf);
+        childs[k].layout();
+        k++;
+      }
+      else{
+        var secondHalf = arr.slice(-half);
+        childs[k] = jsav.ds.array(secondHalf);
+        childs[k].layout();
+        k++;
+        animate(secondHalf, 0, half);
+      }
+      
+    }
+  
 }
 
 

@@ -82,10 +82,10 @@ function animate(arr, init, len, relative){
 
   if (arr.length <= 2){
     var firstHalf = arr.slice(0, len/2);
-    var caseBase1 = jsav.ds.array(firstHalf, {relativeTo: relative, left: -100, top: 125});
+    var caseBase1 = jsav.ds.array(firstHalf, {relativeTo: relative, left: -100, top: 100, anchor: "left bottom"});
     caseBase1.layout();
     var secondHalf = arr.slice(-len/2);
-    var caseBase2 = jsav.ds.array(secondHalf, {relativeTo: relative, left: 100, top: 125});
+    var caseBase2 = jsav.ds.array(secondHalf, {relativeTo: relative, left: 100, top: 100, anchor: "right bottom"});
     caseBase2.layout();
   return;
   }
@@ -102,7 +102,7 @@ function animate(arr, init, len, relative){
       half = Math.ceil(len / 2);
       console.log(half);
       var firstHalf = arr.slice(0, half);
-      childs[k] = jsav.ds.array(firstHalf, {relativeTo: relative, left: -300, top: 125});
+      childs[k] = jsav.ds.array(firstHalf, {relativeTo: relative, left: -100, top: 100, anchor: "left bottom"});
       childs[k].layout();
       newRelative = childs[k];
       k++;
@@ -110,14 +110,13 @@ function animate(arr, init, len, relative){
 
       if(len%2 != 0){ //si el numero de elementos a dividir es impar, se tiene que tomar en cuenta, si no hay duplicidad de datos donde se hace la division
         var secondHalf = arr.slice(-half+1);
-        childs[k] = jsav.ds.array(secondHalf, {relativeTo: relative});
+        childs[k] = jsav.ds.array(secondHalf, {relativeTo: relative, left: 100, top: 100, anchor: "right bottom"});
         childs[k].layout();
         k++;
       }
       else{
-
         var secondHalf = arr.slice(-half);
-        childs[k] = jsav.ds.array(secondHalf,  {relativeTo: relative, left: 300, top: 125});
+        childs[k] = jsav.ds.array(secondHalf,  {relativeTo: relative, left: 100, top: 100, anchor: "right bottom"});
         childs[k].layout();
         newRelative = childs[k];
         k++;

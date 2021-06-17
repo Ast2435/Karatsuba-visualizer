@@ -23,7 +23,11 @@ body {
 #JSAV-container {
     width: 90%;
     position: relative;
-  }
+}
+
+.jsavcanvas{
+    height: 500px;
+}
 
   a{
       color: white;

@@ -36,7 +36,7 @@ function visualizar(a, b){
   var arr = toArray(a, b);
   //console.log(arr);
   animate(arr, 1, arr.length);
-
+  console.log(childs);
 }
 
 function karatsuba(x,y)
@@ -78,15 +78,14 @@ function karatsuba(x,y)
 
 var k = 0;
 childs = [];
-
-function animate(arr, init, len){
+function animate(arr, init, len, relative){
 
   if (arr.length <= 2){
     var firstHalf = arr.slice(0, len/2);
-    var caseBase1 = jsav.ds.array(firstHalf);
+    var caseBase1 = jsav.ds.array(firstHalf, {relativeTo: relative, left: -100, top: 125});
     caseBase1.layout();
     var secondHalf = arr.slice(-len/2);
-    var caseBase2 = jsav.ds.array(secondHalf);
+    var caseBase2 = jsav.ds.array(secondHalf, {relativeTo: relative, left: 100, top: 125});
     caseBase2.layout();
   return;
   }
@@ -96,32 +95,33 @@ function animate(arr, init, len){
       var firstArr = jsav.ds.array(arr);
       firstArr.layout();
       var half = len;
-      animate(arr, 0, half);
+      relative = firstArr;
+      animate(arr, 0, half, relative);
     }
     else if(len > 2){
       half = Math.ceil(len / 2);
       console.log(half);
       var firstHalf = arr.slice(0, half);
-      childs[k] = jsav.ds.array(firstHalf);
+      childs[k] = jsav.ds.array(firstHalf, {relativeTo: relative, left: -300, top: 125});
       childs[k].layout();
+      newRelative = childs[k];
       k++;
-      animate(firstHalf, 0, half);
+      animate(firstHalf, 0, half, newRelative);
       if(len%2 != 0){ //si el numero de elementos a dividir es impar, se tiene que tomar en cuenta, si no hay duplicidad de datos donde se hace la division
         var secondHalf = arr.slice(-half+1);
-        childs[k] = jsav.ds.array(secondHalf);
+        childs[k] = jsav.ds.array(secondHalf, /*{relativeTo: relative}*/);
         childs[k].layout();
         k++;
       }
-      else{
+
         var secondHalf = arr.slice(-half);
-        childs[k] = jsav.ds.array(secondHalf);
+        childs[k] = jsav.ds.array(secondHalf,  {relativeTo: relative, left: 300, top: 125});
         childs[k].layout();
+        newRelative = childs[k];
         k++;
-        animate(secondHalf, 0, half);
-      }
+        animate(secondHalf, 0, half, newRelative);
       
     }
-  
 }
 
 

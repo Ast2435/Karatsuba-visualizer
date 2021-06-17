@@ -37,6 +37,7 @@ function visualizar(a, b){
   //console.log(arr);
   animate(arr, 1, arr.length);
   console.log(childs);
+  jsav.recorded();
 }
 
 function karatsuba(x,y)
@@ -82,11 +83,14 @@ function animate(arr, init, len, relative){
 
   if (arr.length <= 2){
     var firstHalf = arr.slice(0, len/2);
-    var caseBase1 = jsav.ds.array(firstHalf, {relativeTo: relative, left: -100, top: 100, anchor: "left bottom"});
+    var caseBase1 = jsav.ds.array(firstHalf, {relativeTo: relative, center: false, left: -150, top: 150, anchor: "left bottom"});
     caseBase1.layout();
+    jsav.step();
     var secondHalf = arr.slice(-len/2);
-    var caseBase2 = jsav.ds.array(secondHalf, {relativeTo: relative, left: 100, top: 100, anchor: "right bottom"});
+    var caseBase2 = jsav.ds.array(secondHalf, {relativeTo: relative, center: false, left: 150, top: 150, anchor: "right bottom"});
     caseBase2.layout();
+    jsav.step();
+
   return;
   }
 
@@ -94,6 +98,7 @@ function animate(arr, init, len, relative){
     if(len > 2 && init == 1){
       var firstArr = jsav.ds.array(arr);
       firstArr.layout();
+      jsav.displayInit();
       var half = len;
       relative = firstArr;
       animate(arr, 0, half, relative);
@@ -102,22 +107,25 @@ function animate(arr, init, len, relative){
       half = Math.ceil(len / 2);
       console.log(half);
       var firstHalf = arr.slice(0, half);
-      childs[k] = jsav.ds.array(firstHalf, {relativeTo: relative, left: -100, top: 100, anchor: "left bottom"});
+      childs[k] = jsav.ds.array(firstHalf, {relativeTo: relative, center: false, left: -150, top: 150, anchor: "left bottom"});
       childs[k].layout();
+      jsav.step();
       newRelative = childs[k];
       k++;
       animate(firstHalf, 0, half, newRelative);
 
       if(len%2 != 0){ //si el numero de elementos a dividir es impar, se tiene que tomar en cuenta, si no hay duplicidad de datos donde se hace la division
         var secondHalf = arr.slice(-half+1);
-        childs[k] = jsav.ds.array(secondHalf, {relativeTo: relative, left: 100, top: 100, anchor: "right bottom"});
+        childs[k] = jsav.ds.array(secondHalf, {relativeTo: relative, center: false, left: 150, top: 150, anchor: "right bottom"});
         childs[k].layout();
+        jsav.step();
         k++;
       }
       else{
         var secondHalf = arr.slice(-half);
-        childs[k] = jsav.ds.array(secondHalf,  {relativeTo: relative, left: 100, top: 100, anchor: "right bottom"});
+        childs[k] = jsav.ds.array(secondHalf,  {relativeTo: relative, center: false, left: 150, top: 150, anchor: "right bottom"});
         childs[k].layout();
+        jsav.step();
         newRelative = childs[k];
         k++;
         animate(secondHalf, 0, half, newRelative);

@@ -20,18 +20,17 @@ body {
     background-color:#001848; 
     padding: 20px;
 }
-#JSAV-container {
+
+#JSAV-container{
+    display: block;
+    margin: 0 auto;
     width: 90%;
-    position: relative;
 }
 
-.jsavcanvas{
-    height: 500px;
+a{
+      color: white;
 }
 
-  a{
+a:hover{
       color: white;
-  }
-  a:hover{
-      color: white;
-  }
+}

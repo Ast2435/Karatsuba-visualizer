@@ -21,10 +21,40 @@ body {
     padding: 20px;
 }
 
+.jsavlabel {
+    font-size: 200%;
+    text-align: center;
+    margin: 30px 0 10px 0;
+    color: black;
+  }
+
 #JSAV-container{
     display: block;
     margin: 0 auto;
-    width: 90%;
+    width: 80%;
+    overflow: visible;
+}
+
+#animation-section{
+    padding: 20px;
+}
+
+.jsavcounter{
+    color: black;
+}
+
+.jsavcanvas{
+    min-height: 600px !important;
+    background-color: #018ABE;
+}
+
+.jsavcontrols{
+    max-height: 100px;
+}
+
+.jsavarray{
+    display: flex;
+    justify-content: center !important;
 }
 
 a{

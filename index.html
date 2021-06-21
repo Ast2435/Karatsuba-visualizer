@@ -11,7 +11,7 @@
     <script src="assets/popper.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
     <link rel="stylesheet" href="assets/JSAV/css/JSAV.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-    <link rel="stylesheet" href="assets/bootstrap-5.0.1-dist/css/bootstrap.min.css">
+     <link rel="stylesheet" href="assets/bootstrap-5.0.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Karatsuba</title>
 </head>
@@ -361,11 +361,11 @@
                 <p>Podemos ver que nos ahorramos \(9,920,567,176\) operaciones ¡Esto es una optimización masiva! Podemos ver que todo el trabajo realizado valió la pena.</p>
         </div>
 
-    <div>
+    <div id="animation-section">
         <form action="" id="form">
             <div>
-                <p><br> Comencemos con la demostracion, para este caso introduce dos numeros, cualesquiera, siempre y cuando
-                        sean del mismo tamaño y no sean de mas </p>
+                <p><br> A continuación te presentamos una herramienta de visualización, para utilizarla, introduce dos numeros, deben ser 
+                        del mismo tamaño con una longitud no mayor a </p>
                 <p> 8 digitos. </p>
                 <div>
                     <label> Numero 1: </label>
@@ -380,8 +380,13 @@
     </div>
         
     <div id="JSAV-container">
+        <div class="jsavcanvas"></div>
         <div class="jsavcontrols"></div>
-    </div>
+        <p class="jsavoutput jsavline"></p>
+        <span class="jsavcounter"></span>
+        
+      </div>
+    
 
 
 <!-- Toneladas de JS para que funcione la librería de animación -->

@@ -210,7 +210,7 @@ function animate(arr, init, len, relative){
     }
 }*/
 
-
+/*chad*/
 function toArray(a, b){
 var fullNum = "" + a + b;
 
